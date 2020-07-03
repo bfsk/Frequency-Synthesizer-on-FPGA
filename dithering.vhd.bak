@@ -1,0 +1,27 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.all;
+ENTITY dithering IS 
+	PORT(
+		X: IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		CLK: IN STD_LOGIC;
+		RST: IN STD_LOGIC;
+		Y: OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+	);
+END dithering;
+
+ARCHITECTURE arch_dithering OF dithering IS
+	signal noise: STD_LOGIC_VECTOR(31 DOWNTO 0);
+	COMPONENT noise_generator_10_bit IS
+		PORT(
+			CLK: IN STD_LOGIC;
+			RST: IN STD_LOGIC;
+			Y: OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+		);
+	END COMPONENT;
+begin
+  a: noise_generator_10_bit PORT MAP(
+		CLK, RST, noise
+  );
+  Y <= STD_LOGIC_VECTOR(SIGNED(X) + SIGNED(noise));
+END ARCHITECTURE;

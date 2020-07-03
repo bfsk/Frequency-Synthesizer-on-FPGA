@@ -1,0 +1,28 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+ENTITY debounce IS
+	PORT(
+		BTN : OUT STD_LOGIC;
+      CLK : IN STD_LOGIC;
+		RST: IN STD_LOGIC;
+		BTNout: OUT STD_LOGIC
+	);
+END debounce;
+
+ARCHITECTURE arch_debounce OF debounce IS
+	COMPONENT delay_1_bit IS
+		PORT(
+		Q : OUT STD_LOGIC;
+      CLK : IN STD_LOGIC;
+		RST: IN STD_LOGIC;
+      D : IN STD_LOGIC
+		);
+	END COMPONENT;
+BEGIN
+aa: delay_1_bit PORT MAP(
+					Q => s_noise(i),
+					CLK => CLK,
+					RST => RST,
+					D => s_noise(i-1)
+					);	 
+END ARCHITECTURE;
