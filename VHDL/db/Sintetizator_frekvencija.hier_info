@@ -1,0 +1,3234 @@
+|frequency_synthesizer
+SW[0] => dithering:c.EN
+SW[1] => ~NO_FANOUT~
+SW[2] => ~NO_FANOUT~
+SW[3] => ~NO_FANOUT~
+SW[4] => ~NO_FANOUT~
+SW[5] => ~NO_FANOUT~
+SW[6] => ~NO_FANOUT~
+SW[7] => ~NO_FANOUT~
+SW[8] => ~NO_FANOUT~
+SW[9] => ~NO_FANOUT~
+SW[10] => ~NO_FANOUT~
+SW[11] => ~NO_FANOUT~
+SW[12] => ~NO_FANOUT~
+SW[13] => ~NO_FANOUT~
+SW[14] => ~NO_FANOUT~
+SW[15] => ~NO_FANOUT~
+SW[16] => ~NO_FANOUT~
+SW[17] => ~NO_FANOUT~
+KEY[0] => frequency_selector:a.RST
+KEY[0] => phase_accumulator:b.RST
+KEY[0] => dithering:c.RST
+KEY[1] => frequency_selector:a.BTN_DOWN
+KEY[2] => ~NO_FANOUT~
+KEY[3] => frequency_selector:a.BTN_UP
+DA[0] <= <GND>
+DA[1] <= <GND>
+DA[2] <= <GND>
+DA[3] <= <GND>
+DA[4] <= <GND>
+DA[5] <= <GND>
+DA[6] <= <GND>
+DA[7] <= <GND>
+DA[8] <= <GND>
+DA[9] <= bit_manipulator:e.LOOKUP_TABLE[0]
+DA[10] <= bit_manipulator:e.LOOKUP_TABLE[1]
+DA[11] <= bit_manipulator:e.LOOKUP_TABLE[2]
+DA[12] <= bit_manipulator:e.LOOKUP_TABLE[3]
+DA[13] <= bit_manipulator:e.LOOKUP_TABLE[4]
+DB[0] <= sine_completer:g.Y[0]
+DB[1] <= sine_completer:g.Y[1]
+DB[2] <= sine_completer:g.Y[2]
+DB[3] <= sine_completer:g.Y[3]
+DB[4] <= sine_completer:g.Y[4]
+DB[5] <= sine_completer:g.Y[5]
+DB[6] <= sine_completer:g.Y[6]
+DB[7] <= sine_completer:g.Y[7]
+DB[8] <= sine_completer:g.Y[8]
+DB[9] <= sine_completer:g.Y[9]
+DB[10] <= sine_completer:g.Y[10]
+DB[11] <= sine_completer:g.Y[11]
+DB[12] <= sine_completer:g.Y[12]
+DB[13] <= sine_completer:g.Y[13]
+FPGA_CLK_A_N <> FPGA_CLK_A_N
+FPGA_CLK_A_P <> FPGA_CLK_A_P
+FPGA_CLK_B_P <> FPGA_CLK_B_P
+FPGA_CLK_B_N <> FPGA_CLK_B_N
+LEDG[0] <= frequency_selector:a.LEDG[0]
+LEDG[1] <= frequency_selector:a.LEDG[1]
+LEDG[2] <= frequency_selector:a.LEDG[2]
+LEDG[3] <= frequency_selector:a.LEDG[3]
+LEDG[4] <= frequency_selector:a.LEDG[4]
+LEDG[5] <= frequency_selector:a.LEDG[5]
+LEDG[6] <= frequency_selector:a.LEDG[6]
+LEDG[7] <= frequency_selector:a.LEDG[7]
+LEDG[8] <= frequency_selector:a.LEDG[8]
+LEDR[0] <= dithering:c.LED
+LEDR[1] <= <GND>
+LEDR[2] <= <GND>
+LEDR[3] <= <GND>
+LEDR[4] <= <GND>
+LEDR[5] <= <GND>
+LEDR[6] <= <GND>
+LEDR[7] <= <GND>
+LEDR[8] <= <GND>
+LEDR[9] <= <GND>
+LEDR[10] <= <GND>
+LEDR[11] <= <GND>
+LEDR[12] <= <GND>
+LEDR[13] <= <GND>
+LEDR[14] <= <GND>
+LEDR[15] <= <GND>
+LEDR[16] <= <GND>
+LEDR[17] <= <GND>
+OSC_50[0] => frequency_selector:a.CLK
+OSC_50[0] => phase_accumulator:b.CLK
+OSC_50[0] => dithering:c.CLK
+OSC_50[0] => FPGA_CLK_A_N.DATAIN
+OSC_50[0] => FPGA_CLK_A_P.DATAIN
+OSC_50[0] => FPGA_CLK_B_P.DATAIN
+OSC_50[0] => FPGA_CLK_B_N.DATAIN
+OSC_50[1] => ~NO_FANOUT~
+OSC_50[2] => ~NO_FANOUT~
+
+
+|frequency_synthesizer|frequency_selector:a
+LEDG[0] <= debounce:b.result
+LEDG[1] <= debounce:a.result
+LEDG[2] <= <GND>
+LEDG[3] <= <GND>
+LEDG[4] <= <GND>
+LEDG[5] <= <GND>
+LEDG[6] <= <GND>
+LEDG[7] <= <GND>
+LEDG[8] <= <GND>
+BTN_UP => debounce:a.button
+BTN_DOWN => debounce:b.button
+CLK => comb.IN0
+CLK => debounce:a.clk
+CLK => debounce:b.clk
+CLK => delay_1_bit:d.CLK
+RST => comb.IN1
+RST => delay_23_bit:c.RST
+RST => delay_1_bit:d.RST
+RST => debounce:a.reset_n
+RST => debounce:b.reset_n
+Y[0] <= full_adder_23_bit:h.Y1[0]
+Y[1] <= full_adder_23_bit:h.Y1[1]
+Y[2] <= full_adder_23_bit:h.Y1[2]
+Y[3] <= full_adder_23_bit:h.Y1[3]
+Y[4] <= full_adder_23_bit:h.Y1[4]
+Y[5] <= full_adder_23_bit:h.Y1[5]
+Y[6] <= full_adder_23_bit:h.Y1[6]
+Y[7] <= full_adder_23_bit:h.Y1[7]
+Y[8] <= full_adder_23_bit:h.Y1[8]
+Y[9] <= full_adder_23_bit:h.Y1[9]
+Y[10] <= full_adder_23_bit:h.Y1[10]
+Y[11] <= full_adder_23_bit:h.Y1[11]
+Y[12] <= full_adder_23_bit:h.Y1[12]
+Y[13] <= full_adder_23_bit:h.Y1[13]
+Y[14] <= full_adder_23_bit:h.Y1[14]
+Y[15] <= full_adder_23_bit:h.Y1[15]
+Y[16] <= full_adder_23_bit:h.Y1[16]
+Y[17] <= full_adder_23_bit:h.Y1[17]
+Y[18] <= full_adder_23_bit:h.Y1[18]
+Y[19] <= full_adder_23_bit:h.Y1[19]
+Y[20] <= full_adder_23_bit:h.Y1[20]
+Y[21] <= full_adder_23_bit:h.Y1[21]
+Y[22] <= full_adder_23_bit:h.Y1[22]
+
+
+|frequency_synthesizer|frequency_selector:a|debounce:a
+clk => result~reg0.CLK
+clk => flipflops[0].CLK
+clk => flipflops[1].CLK
+clk => count[0].CLK
+clk => count[1].CLK
+clk => count[2].CLK
+clk => count[3].CLK
+clk => count[4].CLK
+clk => count[5].CLK
+clk => count[6].CLK
+clk => count[7].CLK
+clk => count[8].CLK
+clk => count[9].CLK
+clk => count[10].CLK
+clk => count[11].CLK
+clk => count[12].CLK
+clk => count[13].CLK
+clk => count[14].CLK
+clk => count[15].CLK
+clk => count[16].CLK
+clk => count[17].CLK
+clk => count[18].CLK
+reset_n => result~reg0.ACLR
+reset_n => flipflops[0].ACLR
+reset_n => flipflops[1].ACLR
+reset_n => count[18].ENA
+reset_n => count[17].ENA
+reset_n => count[16].ENA
+reset_n => count[15].ENA
+reset_n => count[14].ENA
+reset_n => count[13].ENA
+reset_n => count[12].ENA
+reset_n => count[11].ENA
+reset_n => count[10].ENA
+reset_n => count[9].ENA
+reset_n => count[8].ENA
+reset_n => count[7].ENA
+reset_n => count[6].ENA
+reset_n => count[5].ENA
+reset_n => count[4].ENA
+reset_n => count[3].ENA
+reset_n => count[2].ENA
+reset_n => count[1].ENA
+reset_n => count[0].ENA
+button => flipflops[0].DATAIN
+result <= result~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|debounce:b
+clk => result~reg0.CLK
+clk => flipflops[0].CLK
+clk => flipflops[1].CLK
+clk => count[0].CLK
+clk => count[1].CLK
+clk => count[2].CLK
+clk => count[3].CLK
+clk => count[4].CLK
+clk => count[5].CLK
+clk => count[6].CLK
+clk => count[7].CLK
+clk => count[8].CLK
+clk => count[9].CLK
+clk => count[10].CLK
+clk => count[11].CLK
+clk => count[12].CLK
+clk => count[13].CLK
+clk => count[14].CLK
+clk => count[15].CLK
+clk => count[16].CLK
+clk => count[17].CLK
+clk => count[18].CLK
+reset_n => result~reg0.ACLR
+reset_n => flipflops[0].ACLR
+reset_n => flipflops[1].ACLR
+reset_n => count[18].ENA
+reset_n => count[17].ENA
+reset_n => count[16].ENA
+reset_n => count[15].ENA
+reset_n => count[14].ENA
+reset_n => count[13].ENA
+reset_n => count[12].ENA
+reset_n => count[11].ENA
+reset_n => count[10].ENA
+reset_n => count[9].ENA
+reset_n => count[8].ENA
+reset_n => count[7].ENA
+reset_n => count[6].ENA
+reset_n => count[5].ENA
+reset_n => count[4].ENA
+reset_n => count[3].ENA
+reset_n => count[2].ENA
+reset_n => count[1].ENA
+reset_n => count[0].ENA
+button => flipflops[0].DATAIN
+result <= result~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|delay_23_bit:c
+D[0] => Q.DATAA
+D[1] => Q.DATAA
+D[2] => Q.DATAA
+D[3] => Q.DATAA
+D[4] => Q.DATAA
+D[5] => Q.DATAA
+D[6] => Q.DATAA
+D[7] => Q.DATAA
+D[8] => Q.DATAA
+D[9] => Q.DATAA
+D[10] => Q.DATAA
+D[11] => Q.DATAA
+D[12] => Q.DATAA
+D[13] => Q.DATAA
+D[14] => Q.DATAA
+D[15] => Q.DATAA
+D[16] => Q.DATAA
+D[17] => Q.DATAA
+D[18] => Q.DATAA
+D[19] => Q.DATAA
+D[20] => Q.DATAA
+D[21] => Q.DATAA
+D[22] => Q.DATAA
+CLK => Q[0]~reg0.CLK
+CLK => Q[1]~reg0.CLK
+CLK => Q[2]~reg0.CLK
+CLK => Q[3]~reg0.CLK
+CLK => Q[4]~reg0.CLK
+CLK => Q[5]~reg0.CLK
+CLK => Q[6]~reg0.CLK
+CLK => Q[7]~reg0.CLK
+CLK => Q[8]~reg0.CLK
+CLK => Q[9]~reg0.CLK
+CLK => Q[10]~reg0.CLK
+CLK => Q[11]~reg0.CLK
+CLK => Q[12]~reg0.CLK
+CLK => Q[13]~reg0.CLK
+CLK => Q[14]~reg0.CLK
+CLK => Q[15]~reg0.CLK
+CLK => Q[16]~reg0.CLK
+CLK => Q[17]~reg0.CLK
+CLK => Q[18]~reg0.CLK
+CLK => Q[19]~reg0.CLK
+CLK => Q[20]~reg0.CLK
+CLK => Q[21]~reg0.CLK
+CLK => Q[22]~reg0.CLK
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+Q[0] <= Q[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[1] <= Q[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[2] <= Q[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[3] <= Q[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[4] <= Q[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[5] <= Q[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[6] <= Q[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[7] <= Q[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[8] <= Q[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[9] <= Q[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[10] <= Q[10]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[11] <= Q[11]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[12] <= Q[12]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[13] <= Q[13]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[14] <= Q[14]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[15] <= Q[15]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[16] <= Q[16]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[17] <= Q[17]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[18] <= Q[18]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[19] <= Q[19]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[20] <= Q[20]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[21] <= Q[21]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[22] <= Q[22]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|delay_1_bit:d
+D => Q.DATAA
+CLK => Q~reg0.CLK
+RST => Q.OUTPUTSELECT
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e
+X1[0] => one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.A
+X1[1] => one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.A
+X1[2] => one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.A
+X1[3] => one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.A
+X1[4] => one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.A
+X1[5] => one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.A
+X1[6] => one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.A
+X1[7] => one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.A
+X1[8] => one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.A
+X1[9] => one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.A
+X1[10] => one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.A
+X1[11] => one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.A
+X1[12] => one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.A
+X1[13] => one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.A
+X1[14] => one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.A
+X1[15] => one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.A
+X1[16] => one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.A
+X1[17] => one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.A
+X1[18] => one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.A
+X1[19] => one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.A
+X1[20] => one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.A
+X1[21] => one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.A
+X1[22] => one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.A
+X2[0] => one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.B
+X2[1] => one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.B
+X2[2] => one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.B
+X2[3] => one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.B
+X2[4] => one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.B
+X2[5] => one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.B
+X2[6] => one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.B
+X2[7] => one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.B
+X2[8] => one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.B
+X2[9] => one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.B
+X2[10] => one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.B
+X2[11] => one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.B
+X2[12] => one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.B
+X2[13] => one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.B
+X2[14] => one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.B
+X2[15] => one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.B
+X2[16] => one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.B
+X2[17] => one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.B
+X2[18] => one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.B
+X2[19] => one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.B
+X2[20] => one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.B
+X2[21] => one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.B
+X2[22] => one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.B
+Y1[0] <= one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.Y
+Y1[1] <= one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.Y
+Y1[2] <= one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.Y
+Y1[3] <= one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.Y
+Y1[4] <= one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.Y
+Y1[5] <= one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.Y
+Y1[6] <= one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.Y
+Y1[7] <= one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.Y
+Y1[8] <= one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.Y
+Y1[9] <= one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.Y
+Y1[10] <= one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.Y
+Y1[11] <= one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.Y
+Y1[12] <= one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.Y
+Y1[13] <= one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.Y
+Y1[14] <= one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.Y
+Y1[15] <= one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.Y
+Y1[16] <= one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.Y
+Y1[17] <= one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.Y
+Y1[18] <= one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.Y
+Y1[19] <= one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.Y
+Y1[20] <= one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.Y
+Y1[21] <= one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.Y
+Y1[22] <= one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.Y
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:0:FIRST_BIT:a
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:1:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:2:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:3:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:4:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:5:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:6:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:7:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:8:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:9:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:10:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:11:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:12:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:13:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:14:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:15:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:16:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:17:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:18:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:19:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:20:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:21:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:e|one_bit_full_adder:\FULL_ADD:22:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f
+X1[0] => one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.A
+X1[1] => one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.A
+X1[2] => one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.A
+X1[3] => one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.A
+X1[4] => one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.A
+X1[5] => one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.A
+X1[6] => one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.A
+X1[7] => one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.A
+X1[8] => one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.A
+X1[9] => one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.A
+X1[10] => one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.A
+X1[11] => one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.A
+X1[12] => one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.A
+X1[13] => one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.A
+X1[14] => one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.A
+X1[15] => one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.A
+X1[16] => one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.A
+X1[17] => one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.A
+X1[18] => one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.A
+X1[19] => one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.A
+X1[20] => one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.A
+X1[21] => one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.A
+X1[22] => one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.A
+X2[0] => one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.B
+X2[1] => one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.B
+X2[2] => one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.B
+X2[3] => one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.B
+X2[4] => one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.B
+X2[5] => one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.B
+X2[6] => one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.B
+X2[7] => one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.B
+X2[8] => one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.B
+X2[9] => one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.B
+X2[10] => one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.B
+X2[11] => one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.B
+X2[12] => one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.B
+X2[13] => one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.B
+X2[14] => one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.B
+X2[15] => one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.B
+X2[16] => one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.B
+X2[17] => one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.B
+X2[18] => one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.B
+X2[19] => one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.B
+X2[20] => one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.B
+X2[21] => one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.B
+X2[22] => one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.B
+Y1[0] <= one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.Y
+Y1[1] <= one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.Y
+Y1[2] <= one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.Y
+Y1[3] <= one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.Y
+Y1[4] <= one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.Y
+Y1[5] <= one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.Y
+Y1[6] <= one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.Y
+Y1[7] <= one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.Y
+Y1[8] <= one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.Y
+Y1[9] <= one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.Y
+Y1[10] <= one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.Y
+Y1[11] <= one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.Y
+Y1[12] <= one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.Y
+Y1[13] <= one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.Y
+Y1[14] <= one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.Y
+Y1[15] <= one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.Y
+Y1[16] <= one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.Y
+Y1[17] <= one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.Y
+Y1[18] <= one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.Y
+Y1[19] <= one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.Y
+Y1[20] <= one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.Y
+Y1[21] <= one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.Y
+Y1[22] <= one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.Y
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:0:FIRST_BIT:a
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:1:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:2:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:3:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:4:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:5:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:6:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:7:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:8:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:9:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:10:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:11:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:12:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:13:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:14:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:15:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:16:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:17:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:18:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:19:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:20:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:21:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:f|one_bit_full_adder:\FULL_ADD:22:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g
+X1[0] => one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.A
+X1[1] => one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.A
+X1[2] => one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.A
+X1[3] => one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.A
+X1[4] => one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.A
+X1[5] => one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.A
+X1[6] => one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.A
+X1[7] => one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.A
+X1[8] => one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.A
+X1[9] => one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.A
+X1[10] => one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.A
+X1[11] => one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.A
+X1[12] => one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.A
+X1[13] => one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.A
+X1[14] => one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.A
+X1[15] => one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.A
+X1[16] => one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.A
+X1[17] => one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.A
+X1[18] => one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.A
+X1[19] => one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.A
+X1[20] => one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.A
+X1[21] => one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.A
+X1[22] => one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.A
+X2[0] => one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.B
+X2[1] => one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.B
+X2[2] => one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.B
+X2[3] => one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.B
+X2[4] => one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.B
+X2[5] => one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.B
+X2[6] => one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.B
+X2[7] => one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.B
+X2[8] => one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.B
+X2[9] => one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.B
+X2[10] => one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.B
+X2[11] => one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.B
+X2[12] => one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.B
+X2[13] => one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.B
+X2[14] => one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.B
+X2[15] => one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.B
+X2[16] => one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.B
+X2[17] => one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.B
+X2[18] => one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.B
+X2[19] => one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.B
+X2[20] => one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.B
+X2[21] => one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.B
+X2[22] => one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.B
+Y1[0] <= one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.Y
+Y1[1] <= one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.Y
+Y1[2] <= one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.Y
+Y1[3] <= one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.Y
+Y1[4] <= one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.Y
+Y1[5] <= one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.Y
+Y1[6] <= one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.Y
+Y1[7] <= one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.Y
+Y1[8] <= one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.Y
+Y1[9] <= one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.Y
+Y1[10] <= one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.Y
+Y1[11] <= one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.Y
+Y1[12] <= one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.Y
+Y1[13] <= one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.Y
+Y1[14] <= one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.Y
+Y1[15] <= one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.Y
+Y1[16] <= one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.Y
+Y1[17] <= one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.Y
+Y1[18] <= one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.Y
+Y1[19] <= one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.Y
+Y1[20] <= one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.Y
+Y1[21] <= one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.Y
+Y1[22] <= one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.Y
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:0:FIRST_BIT:a
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:1:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:2:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:3:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:4:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:5:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:6:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:7:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:8:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:9:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:10:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:11:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:12:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:13:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:14:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:15:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:16:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:17:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:18:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:19:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:20:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:21:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:g|one_bit_full_adder:\FULL_ADD:22:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h
+X1[0] => one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.A
+X1[1] => one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.A
+X1[2] => one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.A
+X1[3] => one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.A
+X1[4] => one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.A
+X1[5] => one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.A
+X1[6] => one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.A
+X1[7] => one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.A
+X1[8] => one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.A
+X1[9] => one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.A
+X1[10] => one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.A
+X1[11] => one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.A
+X1[12] => one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.A
+X1[13] => one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.A
+X1[14] => one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.A
+X1[15] => one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.A
+X1[16] => one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.A
+X1[17] => one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.A
+X1[18] => one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.A
+X1[19] => one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.A
+X1[20] => one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.A
+X1[21] => one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.A
+X1[22] => one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.A
+X2[0] => one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.B
+X2[1] => one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.B
+X2[2] => one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.B
+X2[3] => one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.B
+X2[4] => one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.B
+X2[5] => one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.B
+X2[6] => one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.B
+X2[7] => one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.B
+X2[8] => one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.B
+X2[9] => one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.B
+X2[10] => one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.B
+X2[11] => one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.B
+X2[12] => one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.B
+X2[13] => one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.B
+X2[14] => one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.B
+X2[15] => one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.B
+X2[16] => one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.B
+X2[17] => one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.B
+X2[18] => one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.B
+X2[19] => one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.B
+X2[20] => one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.B
+X2[21] => one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.B
+X2[22] => one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.B
+Y1[0] <= one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.Y
+Y1[1] <= one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.Y
+Y1[2] <= one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.Y
+Y1[3] <= one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.Y
+Y1[4] <= one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.Y
+Y1[5] <= one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.Y
+Y1[6] <= one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.Y
+Y1[7] <= one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.Y
+Y1[8] <= one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.Y
+Y1[9] <= one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.Y
+Y1[10] <= one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.Y
+Y1[11] <= one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.Y
+Y1[12] <= one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.Y
+Y1[13] <= one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.Y
+Y1[14] <= one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.Y
+Y1[15] <= one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.Y
+Y1[16] <= one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.Y
+Y1[17] <= one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.Y
+Y1[18] <= one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.Y
+Y1[19] <= one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.Y
+Y1[20] <= one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.Y
+Y1[21] <= one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.Y
+Y1[22] <= one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.Y
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:0:FIRST_BIT:a
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:1:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:2:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:3:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:4:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:5:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:6:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:7:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:8:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:9:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:10:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:11:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:12:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:13:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:14:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:15:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:16:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:17:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:18:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:19:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:20:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:21:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|frequency_selector:a|full_adder_23_bit:h|one_bit_full_adder:\FULL_ADD:22:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b
+FREQUENCY[0] => full_adder_23_bit:a.X2[0]
+FREQUENCY[1] => full_adder_23_bit:a.X2[1]
+FREQUENCY[2] => full_adder_23_bit:a.X2[2]
+FREQUENCY[3] => full_adder_23_bit:a.X2[3]
+FREQUENCY[4] => full_adder_23_bit:a.X2[4]
+FREQUENCY[5] => full_adder_23_bit:a.X2[5]
+FREQUENCY[6] => full_adder_23_bit:a.X2[6]
+FREQUENCY[7] => full_adder_23_bit:a.X2[7]
+FREQUENCY[8] => full_adder_23_bit:a.X2[8]
+FREQUENCY[9] => full_adder_23_bit:a.X2[9]
+FREQUENCY[10] => full_adder_23_bit:a.X2[10]
+FREQUENCY[11] => full_adder_23_bit:a.X2[11]
+FREQUENCY[12] => full_adder_23_bit:a.X2[12]
+FREQUENCY[13] => full_adder_23_bit:a.X2[13]
+FREQUENCY[14] => full_adder_23_bit:a.X2[14]
+FREQUENCY[15] => full_adder_23_bit:a.X2[15]
+FREQUENCY[16] => full_adder_23_bit:a.X2[16]
+FREQUENCY[17] => full_adder_23_bit:a.X2[17]
+FREQUENCY[18] => full_adder_23_bit:a.X2[18]
+FREQUENCY[19] => full_adder_23_bit:a.X2[19]
+FREQUENCY[20] => full_adder_23_bit:a.X2[20]
+FREQUENCY[21] => full_adder_23_bit:a.X2[21]
+FREQUENCY[22] => full_adder_23_bit:a.X2[22]
+CLK => delay_23_bit:b.CLK
+RST => delay_23_bit:b.RST
+PHASE[0] <= comb.DB_MAX_OUTPUT_PORT_TYPE
+PHASE[1] <= PHASE[1].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[2] <= PHASE[2].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[3] <= PHASE[3].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[4] <= PHASE[4].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[5] <= PHASE[5].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[6] <= PHASE[6].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[7] <= PHASE[7].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[8] <= PHASE[8].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[9] <= PHASE[9].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[10] <= PHASE[10].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[11] <= PHASE[11].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[12] <= PHASE[12].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[13] <= PHASE[13].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[14] <= PHASE[14].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[15] <= PHASE[15].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[16] <= PHASE[16].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[17] <= PHASE[17].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[18] <= PHASE[18].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[19] <= PHASE[19].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[20] <= PHASE[20].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[21] <= PHASE[21].DB_MAX_OUTPUT_PORT_TYPE
+PHASE[22] <= PHASE[22].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a
+X1[0] => one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.A
+X1[1] => one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.A
+X1[2] => one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.A
+X1[3] => one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.A
+X1[4] => one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.A
+X1[5] => one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.A
+X1[6] => one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.A
+X1[7] => one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.A
+X1[8] => one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.A
+X1[9] => one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.A
+X1[10] => one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.A
+X1[11] => one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.A
+X1[12] => one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.A
+X1[13] => one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.A
+X1[14] => one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.A
+X1[15] => one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.A
+X1[16] => one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.A
+X1[17] => one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.A
+X1[18] => one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.A
+X1[19] => one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.A
+X1[20] => one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.A
+X1[21] => one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.A
+X1[22] => one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.A
+X2[0] => one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.B
+X2[1] => one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.B
+X2[2] => one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.B
+X2[3] => one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.B
+X2[4] => one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.B
+X2[5] => one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.B
+X2[6] => one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.B
+X2[7] => one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.B
+X2[8] => one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.B
+X2[9] => one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.B
+X2[10] => one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.B
+X2[11] => one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.B
+X2[12] => one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.B
+X2[13] => one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.B
+X2[14] => one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.B
+X2[15] => one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.B
+X2[16] => one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.B
+X2[17] => one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.B
+X2[18] => one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.B
+X2[19] => one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.B
+X2[20] => one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.B
+X2[21] => one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.B
+X2[22] => one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.B
+Y1[0] <= one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.Y
+Y1[1] <= one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.Y
+Y1[2] <= one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.Y
+Y1[3] <= one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.Y
+Y1[4] <= one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.Y
+Y1[5] <= one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.Y
+Y1[6] <= one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.Y
+Y1[7] <= one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.Y
+Y1[8] <= one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.Y
+Y1[9] <= one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.Y
+Y1[10] <= one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.Y
+Y1[11] <= one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.Y
+Y1[12] <= one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.Y
+Y1[13] <= one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.Y
+Y1[14] <= one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.Y
+Y1[15] <= one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.Y
+Y1[16] <= one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.Y
+Y1[17] <= one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.Y
+Y1[18] <= one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.Y
+Y1[19] <= one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.Y
+Y1[20] <= one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.Y
+Y1[21] <= one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.Y
+Y1[22] <= one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.Y
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:0:FIRST_BIT:a
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:1:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:2:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:3:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:4:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:5:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:6:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:7:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:8:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:9:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:10:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:11:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:12:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:13:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:14:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:15:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:16:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:17:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:18:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:19:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:20:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:21:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:22:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|phase_accumulator:b|delay_23_bit:b
+D[0] => Q.DATAA
+D[1] => Q.DATAA
+D[2] => Q.DATAA
+D[3] => Q.DATAA
+D[4] => Q.DATAA
+D[5] => Q.DATAA
+D[6] => Q.DATAA
+D[7] => Q.DATAA
+D[8] => Q.DATAA
+D[9] => Q.DATAA
+D[10] => Q.DATAA
+D[11] => Q.DATAA
+D[12] => Q.DATAA
+D[13] => Q.DATAA
+D[14] => Q.DATAA
+D[15] => Q.DATAA
+D[16] => Q.DATAA
+D[17] => Q.DATAA
+D[18] => Q.DATAA
+D[19] => Q.DATAA
+D[20] => Q.DATAA
+D[21] => Q.DATAA
+D[22] => Q.DATAA
+CLK => Q[0]~reg0.CLK
+CLK => Q[1]~reg0.CLK
+CLK => Q[2]~reg0.CLK
+CLK => Q[3]~reg0.CLK
+CLK => Q[4]~reg0.CLK
+CLK => Q[5]~reg0.CLK
+CLK => Q[6]~reg0.CLK
+CLK => Q[7]~reg0.CLK
+CLK => Q[8]~reg0.CLK
+CLK => Q[9]~reg0.CLK
+CLK => Q[10]~reg0.CLK
+CLK => Q[11]~reg0.CLK
+CLK => Q[12]~reg0.CLK
+CLK => Q[13]~reg0.CLK
+CLK => Q[14]~reg0.CLK
+CLK => Q[15]~reg0.CLK
+CLK => Q[16]~reg0.CLK
+CLK => Q[17]~reg0.CLK
+CLK => Q[18]~reg0.CLK
+CLK => Q[19]~reg0.CLK
+CLK => Q[20]~reg0.CLK
+CLK => Q[21]~reg0.CLK
+CLK => Q[22]~reg0.CLK
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+RST => Q.OUTPUTSELECT
+Q[0] <= Q[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[1] <= Q[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[2] <= Q[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[3] <= Q[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[4] <= Q[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[5] <= Q[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[6] <= Q[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[7] <= Q[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[8] <= Q[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[9] <= Q[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[10] <= Q[10]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[11] <= Q[11]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[12] <= Q[12]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[13] <= Q[13]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[14] <= Q[14]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[15] <= Q[15]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[16] <= Q[16]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[17] <= Q[17]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[18] <= Q[18]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[19] <= Q[19]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[20] <= Q[20]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[21] <= Q[21]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[22] <= Q[22]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c
+LED <= EN.DB_MAX_OUTPUT_PORT_TYPE
+X[0] => Y.DATAA
+X[0] => full_adder_23_bit:b.X2[0]
+X[1] => Y.DATAA
+X[1] => full_adder_23_bit:b.X2[1]
+X[2] => Y.DATAA
+X[2] => full_adder_23_bit:b.X2[2]
+X[3] => Y.DATAA
+X[3] => full_adder_23_bit:b.X2[3]
+X[4] => Y.DATAA
+X[4] => full_adder_23_bit:b.X2[4]
+X[5] => Y.DATAA
+X[5] => full_adder_23_bit:b.X2[5]
+X[6] => Y.DATAA
+X[6] => full_adder_23_bit:b.X2[6]
+X[7] => Y.DATAA
+X[7] => full_adder_23_bit:b.X2[7]
+X[8] => Y.DATAA
+X[8] => full_adder_23_bit:b.X2[8]
+X[9] => Y.DATAA
+X[9] => full_adder_23_bit:b.X2[9]
+X[10] => Y.DATAA
+X[10] => full_adder_23_bit:b.X2[10]
+X[11] => Y.DATAA
+X[11] => full_adder_23_bit:b.X2[11]
+X[12] => Y.DATAA
+X[12] => full_adder_23_bit:b.X2[12]
+X[13] => Y.DATAA
+X[13] => full_adder_23_bit:b.X2[13]
+X[14] => Y.DATAA
+X[14] => full_adder_23_bit:b.X2[14]
+X[15] => Y.DATAA
+X[15] => full_adder_23_bit:b.X2[15]
+X[16] => Y.DATAA
+X[16] => full_adder_23_bit:b.X2[16]
+X[17] => Y.DATAA
+X[17] => full_adder_23_bit:b.X2[17]
+X[18] => Y.DATAA
+X[18] => full_adder_23_bit:b.X2[18]
+X[19] => Y.DATAA
+X[19] => full_adder_23_bit:b.X2[19]
+X[20] => Y.DATAA
+X[20] => full_adder_23_bit:b.X2[20]
+X[21] => Y.DATAA
+X[21] => full_adder_23_bit:b.X2[21]
+X[22] => Y.DATAA
+X[22] => full_adder_23_bit:b.X2[22]
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => Y.OUTPUTSELECT
+EN => LED.DATAIN
+CLK => noise_generator_17_bit:a.CLK
+RST => noise_generator_17_bit:a.RST
+Y[0] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[1] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[2] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[3] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[4] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[5] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[6] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[7] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[8] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[9] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[10] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[11] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[12] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[13] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[14] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[15] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[16] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[17] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[18] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[19] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[20] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[21] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[22] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a
+CLK => delay_1_bit_i:a:0:y:aa.CLK
+CLK => delay_1_bit_i:a:1:x:aa.CLK
+CLK => delay_1_bit_i:a:2:x:aa.CLK
+CLK => delay_1_bit_i:a:3:x:aa.CLK
+CLK => delay_1_bit_i:a:4:x:aa.CLK
+CLK => delay_1_bit_i:a:5:x:aa.CLK
+CLK => delay_1_bit_i:a:6:x:aa.CLK
+CLK => delay_1_bit_i:a:7:x:aa.CLK
+CLK => delay_1_bit_i:a:8:x:aa.CLK
+CLK => delay_1_bit_i:a:9:x:aa.CLK
+CLK => delay_1_bit_i:a:10:x:aa.CLK
+CLK => delay_1_bit_i:a:11:x:aa.CLK
+CLK => delay_1_bit_i:a:12:x:aa.CLK
+CLK => delay_1_bit_i:a:13:x:aa.CLK
+CLK => delay_1_bit_i:a:14:x:aa.CLK
+CLK => delay_1_bit_i:a:15:x:aa.CLK
+CLK => delay_1_bit_i:a:16:x:aa.CLK
+RST => delay_1_bit_i:a:0:y:aa.RST
+RST => delay_1_bit_i:a:1:x:aa.RST
+RST => delay_1_bit_i:a:2:x:aa.RST
+RST => delay_1_bit_i:a:3:x:aa.RST
+RST => delay_1_bit_i:a:4:x:aa.RST
+RST => delay_1_bit_i:a:5:x:aa.RST
+RST => delay_1_bit_i:a:6:x:aa.RST
+RST => delay_1_bit_i:a:7:x:aa.RST
+RST => delay_1_bit_i:a:8:x:aa.RST
+RST => delay_1_bit_i:a:9:x:aa.RST
+RST => delay_1_bit_i:a:10:x:aa.RST
+RST => delay_1_bit_i:a:11:x:aa.RST
+RST => delay_1_bit_i:a:12:x:aa.RST
+RST => delay_1_bit_i:a:13:x:aa.RST
+RST => delay_1_bit_i:a:14:x:aa.RST
+RST => delay_1_bit_i:a:15:x:aa.RST
+RST => delay_1_bit_i:a:16:x:aa.RST
+Y[0] <= delay_1_bit_i:a:0:y:aa.Q
+Y[1] <= delay_1_bit_i:a:1:x:aa.Q
+Y[2] <= delay_1_bit_i:a:2:x:aa.Q
+Y[3] <= delay_1_bit_i:a:3:x:aa.Q
+Y[4] <= delay_1_bit_i:a:4:x:aa.Q
+Y[5] <= delay_1_bit_i:a:5:x:aa.Q
+Y[6] <= delay_1_bit_i:a:6:x:aa.Q
+Y[7] <= delay_1_bit_i:a:7:x:aa.Q
+Y[8] <= delay_1_bit_i:a:8:x:aa.Q
+Y[9] <= delay_1_bit_i:a:9:x:aa.Q
+Y[10] <= delay_1_bit_i:a:10:x:aa.Q
+Y[11] <= delay_1_bit_i:a:11:x:aa.Q
+Y[12] <= delay_1_bit_i:a:12:x:aa.Q
+Y[13] <= delay_1_bit_i:a:13:x:aa.Q
+Y[14] <= delay_1_bit_i:a:14:x:aa.Q
+Y[15] <= delay_1_bit_i:a:15:x:aa.Q
+Y[16] <= delay_1_bit_i:a:16:x:aa.Q
+Y[17] <= <GND>
+Y[18] <= <GND>
+Y[19] <= <GND>
+Y[20] <= <GND>
+Y[21] <= <GND>
+Y[22] <= <GND>
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a|delay_1_bit_i:\a:0:y:aa
+D => s_q.DATAA
+CLK => s_q.CLK
+RST => s_q.OUTPUTSELECT
+Q <= s_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a|delay_1_bit_i:\a:1:x:aa
+D => s_q.DATAA
+CLK => s_q.CLK
+RST => s_q.OUTPUTSELECT
+Q <= s_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a|delay_1_bit_i:\a:2:x:aa
+D => s_q.DATAA
+CLK => s_q.CLK
+RST => s_q.OUTPUTSELECT
+Q <= s_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a|delay_1_bit_i:\a:3:x:aa
+D => s_q.DATAA
+CLK => s_q.CLK
+RST => s_q.OUTPUTSELECT
+Q <= s_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a|delay_1_bit_i:\a:4:x:aa
+D => s_q.DATAA
+CLK => s_q.CLK
+RST => s_q.OUTPUTSELECT
+Q <= s_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a|delay_1_bit_i:\a:5:x:aa
+D => s_q.DATAA
+CLK => s_q.CLK
+RST => s_q.OUTPUTSELECT
+Q <= s_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a|delay_1_bit_i:\a:6:x:aa
+D => s_q.DATAA
+CLK => s_q.CLK
+RST => s_q.OUTPUTSELECT
+Q <= s_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a|delay_1_bit_i:\a:7:x:aa
+D => s_q.DATAA
+CLK => s_q.CLK
+RST => s_q.OUTPUTSELECT
+Q <= s_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a|delay_1_bit_i:\a:8:x:aa
+D => s_q.DATAA
+CLK => s_q.CLK
+RST => s_q.OUTPUTSELECT
+Q <= s_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a|delay_1_bit_i:\a:9:x:aa
+D => s_q.DATAA
+CLK => s_q.CLK
+RST => s_q.OUTPUTSELECT
+Q <= s_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a|delay_1_bit_i:\a:10:x:aa
+D => s_q.DATAA
+CLK => s_q.CLK
+RST => s_q.OUTPUTSELECT
+Q <= s_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a|delay_1_bit_i:\a:11:x:aa
+D => s_q.DATAA
+CLK => s_q.CLK
+RST => s_q.OUTPUTSELECT
+Q <= s_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a|delay_1_bit_i:\a:12:x:aa
+D => s_q.DATAA
+CLK => s_q.CLK
+RST => s_q.OUTPUTSELECT
+Q <= s_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a|delay_1_bit_i:\a:13:x:aa
+D => s_q.DATAA
+CLK => s_q.CLK
+RST => s_q.OUTPUTSELECT
+Q <= s_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a|delay_1_bit_i:\a:14:x:aa
+D => s_q.DATAA
+CLK => s_q.CLK
+RST => s_q.OUTPUTSELECT
+Q <= s_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a|delay_1_bit_i:\a:15:x:aa
+D => s_q.DATAA
+CLK => s_q.CLK
+RST => s_q.OUTPUTSELECT
+Q <= s_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|noise_generator_17_bit:a|delay_1_bit_i:\a:16:x:aa
+D => s_q.DATAA
+CLK => s_q.CLK
+RST => s_q.OUTPUTSELECT
+Q <= s_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b
+X1[0] => one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.A
+X1[1] => one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.A
+X1[2] => one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.A
+X1[3] => one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.A
+X1[4] => one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.A
+X1[5] => one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.A
+X1[6] => one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.A
+X1[7] => one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.A
+X1[8] => one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.A
+X1[9] => one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.A
+X1[10] => one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.A
+X1[11] => one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.A
+X1[12] => one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.A
+X1[13] => one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.A
+X1[14] => one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.A
+X1[15] => one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.A
+X1[16] => one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.A
+X1[17] => one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.A
+X1[18] => one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.A
+X1[19] => one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.A
+X1[20] => one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.A
+X1[21] => one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.A
+X1[22] => one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.A
+X2[0] => one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.B
+X2[1] => one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.B
+X2[2] => one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.B
+X2[3] => one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.B
+X2[4] => one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.B
+X2[5] => one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.B
+X2[6] => one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.B
+X2[7] => one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.B
+X2[8] => one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.B
+X2[9] => one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.B
+X2[10] => one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.B
+X2[11] => one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.B
+X2[12] => one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.B
+X2[13] => one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.B
+X2[14] => one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.B
+X2[15] => one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.B
+X2[16] => one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.B
+X2[17] => one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.B
+X2[18] => one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.B
+X2[19] => one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.B
+X2[20] => one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.B
+X2[21] => one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.B
+X2[22] => one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.B
+Y1[0] <= one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.Y
+Y1[1] <= one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.Y
+Y1[2] <= one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.Y
+Y1[3] <= one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.Y
+Y1[4] <= one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.Y
+Y1[5] <= one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.Y
+Y1[6] <= one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.Y
+Y1[7] <= one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.Y
+Y1[8] <= one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.Y
+Y1[9] <= one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.Y
+Y1[10] <= one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.Y
+Y1[11] <= one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.Y
+Y1[12] <= one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.Y
+Y1[13] <= one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.Y
+Y1[14] <= one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.Y
+Y1[15] <= one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.Y
+Y1[16] <= one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.Y
+Y1[17] <= one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.Y
+Y1[18] <= one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.Y
+Y1[19] <= one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.Y
+Y1[20] <= one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.Y
+Y1[21] <= one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.Y
+Y1[22] <= one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.Y
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:0:FIRST_BIT:a
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:1:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:2:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:3:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:4:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:5:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:6:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:7:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:8:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:9:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:10:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:11:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:12:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:13:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:14:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:15:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:16:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:17:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:18:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:19:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:20:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:21:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|dithering:c|full_adder_23_bit:b|one_bit_full_adder:\FULL_ADD:22:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|quantiser_23_to_6_msb:d
+X[0] => ~NO_FANOUT~
+X[1] => ~NO_FANOUT~
+X[2] => ~NO_FANOUT~
+X[3] => ~NO_FANOUT~
+X[4] => ~NO_FANOUT~
+X[5] => ~NO_FANOUT~
+X[6] => ~NO_FANOUT~
+X[7] => ~NO_FANOUT~
+X[8] => ~NO_FANOUT~
+X[9] => ~NO_FANOUT~
+X[10] => ~NO_FANOUT~
+X[11] => ~NO_FANOUT~
+X[12] => ~NO_FANOUT~
+X[13] => ~NO_FANOUT~
+X[14] => ~NO_FANOUT~
+X[15] => ~NO_FANOUT~
+X[16] => ~NO_FANOUT~
+X[17] => Y[0].DATAIN
+X[18] => Y[1].DATAIN
+X[19] => Y[2].DATAIN
+X[20] => Y[3].DATAIN
+X[21] => Y[4].DATAIN
+X[22] => Y[5].DATAIN
+Y[0] <= X[17].DB_MAX_OUTPUT_PORT_TYPE
+Y[1] <= X[18].DB_MAX_OUTPUT_PORT_TYPE
+Y[2] <= X[19].DB_MAX_OUTPUT_PORT_TYPE
+Y[3] <= X[20].DB_MAX_OUTPUT_PORT_TYPE
+Y[4] <= X[21].DB_MAX_OUTPUT_PORT_TYPE
+Y[5] <= X[22].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e
+X[0] => LOOKUP_TABLE.DATAB
+X[0] => full_adder_23_bit:a.X1[0]
+X[0] => log.IN1
+X[1] => LOOKUP_TABLE.DATAB
+X[1] => full_adder_23_bit:a.X1[1]
+X[1] => log.IN1
+X[2] => LOOKUP_TABLE.DATAB
+X[2] => full_adder_23_bit:a.X1[2]
+X[2] => log.IN1
+X[3] => LOOKUP_TABLE.DATAB
+X[3] => full_adder_23_bit:a.X1[3]
+X[3] => log.IN0
+X[4] => log.IN1
+X[4] => LOOKUP_TABLE.DATAB
+X[4] => log.IN1
+X[5] => SGN.DATAIN
+LOOKUP_TABLE[0] <= LOOKUP_TABLE.DB_MAX_OUTPUT_PORT_TYPE
+LOOKUP_TABLE[1] <= LOOKUP_TABLE.DB_MAX_OUTPUT_PORT_TYPE
+LOOKUP_TABLE[2] <= LOOKUP_TABLE.DB_MAX_OUTPUT_PORT_TYPE
+LOOKUP_TABLE[3] <= LOOKUP_TABLE.DB_MAX_OUTPUT_PORT_TYPE
+LOOKUP_TABLE[4] <= LOOKUP_TABLE.DB_MAX_OUTPUT_PORT_TYPE
+SGN <= X[5].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a
+X1[0] => one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.A
+X1[1] => one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.A
+X1[2] => one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.A
+X1[3] => one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.A
+X1[4] => one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.A
+X1[5] => one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.A
+X1[6] => one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.A
+X1[7] => one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.A
+X1[8] => one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.A
+X1[9] => one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.A
+X1[10] => one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.A
+X1[11] => one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.A
+X1[12] => one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.A
+X1[13] => one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.A
+X1[14] => one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.A
+X1[15] => one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.A
+X1[16] => one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.A
+X1[17] => one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.A
+X1[18] => one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.A
+X1[19] => one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.A
+X1[20] => one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.A
+X1[21] => one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.A
+X1[22] => one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.A
+X2[0] => one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.B
+X2[1] => one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.B
+X2[2] => one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.B
+X2[3] => one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.B
+X2[4] => one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.B
+X2[5] => one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.B
+X2[6] => one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.B
+X2[7] => one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.B
+X2[8] => one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.B
+X2[9] => one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.B
+X2[10] => one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.B
+X2[11] => one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.B
+X2[12] => one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.B
+X2[13] => one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.B
+X2[14] => one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.B
+X2[15] => one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.B
+X2[16] => one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.B
+X2[17] => one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.B
+X2[18] => one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.B
+X2[19] => one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.B
+X2[20] => one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.B
+X2[21] => one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.B
+X2[22] => one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.B
+Y1[0] <= one_bit_full_adder:FULL_ADD:0:FIRST_BIT:a.Y
+Y1[1] <= one_bit_full_adder:FULL_ADD:1:OTHER_BITS:b.Y
+Y1[2] <= one_bit_full_adder:FULL_ADD:2:OTHER_BITS:b.Y
+Y1[3] <= one_bit_full_adder:FULL_ADD:3:OTHER_BITS:b.Y
+Y1[4] <= one_bit_full_adder:FULL_ADD:4:OTHER_BITS:b.Y
+Y1[5] <= one_bit_full_adder:FULL_ADD:5:OTHER_BITS:b.Y
+Y1[6] <= one_bit_full_adder:FULL_ADD:6:OTHER_BITS:b.Y
+Y1[7] <= one_bit_full_adder:FULL_ADD:7:OTHER_BITS:b.Y
+Y1[8] <= one_bit_full_adder:FULL_ADD:8:OTHER_BITS:b.Y
+Y1[9] <= one_bit_full_adder:FULL_ADD:9:OTHER_BITS:b.Y
+Y1[10] <= one_bit_full_adder:FULL_ADD:10:OTHER_BITS:b.Y
+Y1[11] <= one_bit_full_adder:FULL_ADD:11:OTHER_BITS:b.Y
+Y1[12] <= one_bit_full_adder:FULL_ADD:12:OTHER_BITS:b.Y
+Y1[13] <= one_bit_full_adder:FULL_ADD:13:OTHER_BITS:b.Y
+Y1[14] <= one_bit_full_adder:FULL_ADD:14:OTHER_BITS:b.Y
+Y1[15] <= one_bit_full_adder:FULL_ADD:15:OTHER_BITS:b.Y
+Y1[16] <= one_bit_full_adder:FULL_ADD:16:OTHER_BITS:b.Y
+Y1[17] <= one_bit_full_adder:FULL_ADD:17:OTHER_BITS:b.Y
+Y1[18] <= one_bit_full_adder:FULL_ADD:18:OTHER_BITS:b.Y
+Y1[19] <= one_bit_full_adder:FULL_ADD:19:OTHER_BITS:b.Y
+Y1[20] <= one_bit_full_adder:FULL_ADD:20:OTHER_BITS:b.Y
+Y1[21] <= one_bit_full_adder:FULL_ADD:21:OTHER_BITS:b.Y
+Y1[22] <= one_bit_full_adder:FULL_ADD:22:OTHER_BITS:b.Y
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:0:FIRST_BIT:a
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:1:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:2:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:3:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:4:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:5:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:6:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:7:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:8:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:9:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:10:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:11:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:12:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:13:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:14:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:15:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:16:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:17:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:18:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:19:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:20:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:21:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|bit_manipulator:e|full_adder_23_bit:a|one_bit_full_adder:\FULL_ADD:22:OTHER_BITS:b
+A => Cout.IN0
+A => Cout.IN0
+B => Cout.IN1
+B => Cout.IN1
+Cin => Y.IN1
+Cin => Cout.IN1
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+Y <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|lookup_table:f
+X[0] => Mux1.IN36
+X[0] => Mux2.IN36
+X[0] => Mux3.IN36
+X[0] => Mux4.IN36
+X[0] => Mux5.IN36
+X[0] => Mux6.IN36
+X[0] => Mux7.IN36
+X[0] => Mux8.IN36
+X[0] => Mux9.IN36
+X[0] => Mux10.IN36
+X[0] => Mux11.IN36
+X[0] => Mux12.IN36
+X[1] => Mux0.IN19
+X[1] => Mux1.IN35
+X[1] => Mux2.IN35
+X[1] => Mux3.IN35
+X[1] => Mux4.IN35
+X[1] => Mux5.IN35
+X[1] => Mux6.IN35
+X[1] => Mux7.IN35
+X[1] => Mux8.IN35
+X[1] => Mux9.IN35
+X[1] => Mux10.IN35
+X[1] => Mux11.IN35
+X[1] => Mux12.IN35
+X[2] => Mux0.IN18
+X[2] => Mux1.IN34
+X[2] => Mux2.IN34
+X[2] => Mux3.IN34
+X[2] => Mux4.IN34
+X[2] => Mux5.IN34
+X[2] => Mux6.IN34
+X[2] => Mux7.IN34
+X[2] => Mux8.IN34
+X[2] => Mux9.IN34
+X[2] => Mux10.IN34
+X[2] => Mux11.IN34
+X[2] => Mux12.IN34
+X[3] => Mux0.IN17
+X[3] => Mux1.IN33
+X[3] => Mux2.IN33
+X[3] => Mux3.IN33
+X[3] => Mux4.IN33
+X[3] => Mux5.IN33
+X[3] => Mux6.IN33
+X[3] => Mux7.IN33
+X[3] => Mux8.IN33
+X[3] => Mux9.IN33
+X[3] => Mux10.IN33
+X[3] => Mux11.IN33
+X[3] => Mux12.IN33
+X[4] => Mux0.IN16
+X[4] => Mux1.IN32
+X[4] => Mux2.IN32
+X[4] => Mux3.IN32
+X[4] => Mux4.IN32
+X[4] => Mux5.IN32
+X[4] => Mux6.IN32
+X[4] => Mux7.IN32
+X[4] => Mux8.IN32
+X[4] => Mux9.IN32
+X[4] => Mux10.IN32
+X[4] => Mux11.IN32
+X[4] => Mux12.IN32
+Y[0] <= Mux12.DB_MAX_OUTPUT_PORT_TYPE
+Y[1] <= Mux11.DB_MAX_OUTPUT_PORT_TYPE
+Y[2] <= Mux10.DB_MAX_OUTPUT_PORT_TYPE
+Y[3] <= Mux9.DB_MAX_OUTPUT_PORT_TYPE
+Y[4] <= Mux8.DB_MAX_OUTPUT_PORT_TYPE
+Y[5] <= Mux7.DB_MAX_OUTPUT_PORT_TYPE
+Y[6] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+Y[7] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+Y[8] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+Y[9] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+Y[10] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+Y[11] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+Y[12] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|frequency_synthesizer|sine_completer:g
+X[0] => Y.DATAB
+X[0] => Y.DATAA
+X[1] => Y.DATAB
+X[1] => Y.DATAA
+X[2] => Y.DATAB
+X[2] => Y.DATAA
+X[3] => Y.DATAB
+X[3] => Y.DATAA
+X[4] => Y.DATAB
+X[4] => Y.DATAA
+X[5] => Y.DATAB
+X[5] => Y.DATAA
+X[6] => Y.DATAB
+X[6] => Y.DATAA
+X[7] => Y.DATAB
+X[7] => Y.DATAA
+X[8] => Y.DATAB
+X[8] => Y.DATAA
+X[9] => Y.DATAB
+X[9] => Y.DATAA
+X[10] => Y.DATAB
+X[10] => Y.DATAA
+X[11] => Y.DATAB
+X[11] => Y.DATAA
+X[12] => Y.DATAB
+X[12] => Y.DATAA
+SGN => Y.OUTPUTSELECT
+SGN => Y.OUTPUTSELECT
+SGN => Y.OUTPUTSELECT
+SGN => Y.OUTPUTSELECT
+SGN => Y.OUTPUTSELECT
+SGN => Y.OUTPUTSELECT
+SGN => Y.OUTPUTSELECT
+SGN => Y.OUTPUTSELECT
+SGN => Y.OUTPUTSELECT
+SGN => Y.OUTPUTSELECT
+SGN => Y.OUTPUTSELECT
+SGN => Y.OUTPUTSELECT
+SGN => Y.OUTPUTSELECT
+SGN => Y[13].DATAIN
+Y[0] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[1] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[2] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[3] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[4] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[5] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[6] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[7] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[8] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[9] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[10] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[11] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[12] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[13] <= SGN.DB_MAX_OUTPUT_PORT_TYPE
+
+

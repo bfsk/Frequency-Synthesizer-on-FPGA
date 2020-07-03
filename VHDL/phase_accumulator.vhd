@@ -1,0 +1,49 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.all;
+ENTITY phase_accumulator IS
+	PORT(
+		FREQUENCY: IN STD_LOGIC_VECTOR(22 DOWNTO 0);
+		CLK :IN STD_LOGIC;
+		RST: IN STD_LOGIC;
+		PHASE: OUT STD_LOGIC_VECTOR(22 DOWNTO 0)
+	);
+END phase_accumulator;
+
+ARCHITECTURE arch_phase_accumulator OF phase_accumulator IS
+	COMPONENT delay_23_bit IS
+		PORT(
+			D : IN STD_LOGIC_VECTOR(22 DOWNTO 0);
+			CLK : IN STD_LOGIC;
+			RST: IN STD_LOGIC;
+			Q : OUT STD_LOGIC_VECTOR(22 DOWNTO 0)
+			);
+	END COMPONENT;
+	
+	
+	COMPONENT full_adder_23_bit IS
+		PORT( 
+			X1: IN STD_LOGIC_VECTOR(22 DOWNTO 0);
+			X2: IN STD_LOGIC_VECTOR(22 DOWNTO 0);
+			Y1: OUT STD_LOGIC_VECTOR(22 DOWNTO 0)
+		);
+	END COMPONENT;
+	
+	signal s_Q: STD_LOGIC_VECTOR(22 DOWNTO 0);
+	signal SUM: STD_LOGIC_VECTOR(22 DOWNTO 0);
+	signal SUM_a: STD_LOGIC_VECTOR(22 DOWNTO 0);
+	signal overflow: STD_LOGIC;
+
+BEGIN
+
+
+	a: full_adder_23_bit PORT MAP(
+			s_Q, FREQUENCY, SUM
+		);
+		
+	b: delay_23_bit PORT MAP(
+			s_Q, CLK, RST, SUM
+		);
+		
+	PHASE <= s_Q;
+END ARCHITECTURE;
